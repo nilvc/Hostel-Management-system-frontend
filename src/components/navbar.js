@@ -1,6 +1,7 @@
 import React , {useState , useContext} from 'react'
 import axios from 'axios';
 import { Usercontext } from './Usercontext';
+import { useHistory } from 'react-router';
 
 
 export const Navbar = () => {
@@ -9,6 +10,7 @@ export const Navbar = () => {
     const is_autenticated = userstate["is_autenticated"] ;
     const is_staff = userstate["is_staff"]
     const is_student = userstate["is_student"]
+    const history = useHistory();
 
     const [loginfields,setLoginFields] = useState({
         username:"",
@@ -31,11 +33,27 @@ export const Navbar = () => {
         }).then((response)=>{
             localStorage.setItem("auth_token",response.data.token);
             localStorage.setItem("username",response.data.user.username);
+            let id = 0
+            if(response.data.is_student)
+            {
+                id = 22102000
+            }
+            else{
+                id = 17042004
+            }
+            localStorage.setItem("id",id)
             setUserstate({
                 is_autenticated : true,
                 is_staff : !response.data.is_student,
                 is_student : response.data.is_student
-            })
+            },console.log("login successfull"))
+            if (id == 22102000)
+            {
+                history.push("/student")
+            }
+            else{
+                history.push("/staff")
+            }
 
         }).catch((err)=>{
             alert("Invalid credentials !!");
@@ -63,15 +81,10 @@ export const Navbar = () => {
                 is_staff : false,
                 is_student : false
             })
-            alert("Logout successfull.")
         }).catch((err)=>{
-            alert("Invalid credentials !!");
-            console.log(err);
+            alert("some error occured !!");
         });
-        setLoginFields({
-            username:"",
-            password:""
-        })
+        history.push("/")
     }
 
 

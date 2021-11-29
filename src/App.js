@@ -1,8 +1,9 @@
 import {BrowserRouter as Router , Switch , Route} from 'react-router-dom';
 import { Userprovider } from './components/Usercontext';
-import {Navbar}  from './components/navbar';
-import Home from './components/home';
-import {Profile} from "./components/profile"
+import {Navbar}  from './components/Navbar';
+import Home from './components/Home';
+import {Student_profile} from "./components/Student_profile"
+import {Staff_profile} from "./components/Staff_profile"
 
 function App(){
   return (
@@ -12,7 +13,8 @@ function App(){
           <Navbar/>
           <Switch>
               <Route exact path="/" component={Home}/>
-              <Route exact path="/profile" component={Profile}/>
+              <Route exact path="/student" component={Student_profile}/>
+              <Route exact path="/staff" component={Staff_profile}/>
           </Switch>
         </div>
         </Userprovider>
