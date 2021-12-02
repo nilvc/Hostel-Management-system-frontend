@@ -9,7 +9,6 @@ export const Navbar = () => {
     const [userstate ,setUserstate] = useContext(Usercontext);
     const is_autenticated = userstate["is_autenticated"] ;
     const is_staff = userstate["is_staff"]
-    const is_student = userstate["is_student"]
     const history = useHistory();
 
     const [loginfields,setLoginFields] = useState({
@@ -44,10 +43,10 @@ export const Navbar = () => {
             localStorage.setItem("id",id)
             setUserstate({
                 is_autenticated : true,
-                is_staff : !response.data.is_student,
+                is_staff : ! response.data.is_student,
                 is_student : response.data.is_student
-            },console.log("login successfull"))
-            if (id == 22102000)
+            },console.log(response.data.is_student))
+            if (id === 22102000)
             {
                 history.push("/student")
             }
@@ -128,7 +127,7 @@ export const Navbar = () => {
                             <a className="nav-link" href="/home">Home <span className="sr-only">(current)</span></a>
                         </li>
                     </ul>
-                    {!is_autenticated && loginform}
+                    {! is_autenticated && loginform}
                     {is_staff && only_staff}
                     {is_autenticated && <button className="btn btn-outline-success btn-sm my-2 my-sm-0" 
                                         onClick={handleLogout}>Logout</button> }
