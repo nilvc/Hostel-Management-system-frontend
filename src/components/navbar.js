@@ -105,7 +105,10 @@ export const Navbar = () => {
     
     const only_staff = <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                             <li className="nav-item active">
-                                <a className="nav-link" href="/">Register Students</a>
+                                <a className="nav-link" href="/staff">Register Students</a>
+                            </li>
+                            <li className="nav-item active">
+                                <a className="nav-link" href="/add_visitor">Register Visitor</a>
                             </li>
                         </ul>
 
