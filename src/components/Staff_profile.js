@@ -188,7 +188,7 @@ export const Staff_profile = () => {
             <div className="row">
                 <div className="col-sm-5">
                     <form className="m-3" onSubmit = {search_student}>
-                        <div className ="form-row text-center m-3">  
+                        <div className ="form-row text-center m-2">  
                             <h5>Enter registration number of student to serach</h5>
                             <input type="text" placeholder="C2K191*****" className="form-control"
                             onChange = {(event) => {setSearchstudent(event.target.value)}}
@@ -200,29 +200,36 @@ export const Staff_profile = () => {
                         See complaints
                     </button>
                     {searched_student_data.name ?
-                    <div className = "m-2 container">
-                        <p>found the student</p>
-                        <img src = {"http://127.0.0.1:8000"+searched_student_data.profile_pic}/> 
-                        <h2>Registration ID :{searched_student_data.registration_id}</h2>
-                        <h2>Name :{searched_student_data.name}</h2>
-                        <h2>Email :{searched_student_data.email}</h2>
-                        <h2>Branch :{searched_student_data.branch}</h2>
-                        <h2>Year :{searched_student_data.year}</h2>
-                        <h2>Mobile number :{searched_student_data.mobile_number}</h2>
-                        <h2>Room number :{searched_student_data.room_number}</h2>
-                        <h2>Registered by :{searched_student_data.staff}</h2>
-                        <button className = "btn btn-sm btn-danger" onClick = {delete_student}>
-                            Delete this student
-                        </button>
+                    <div className = "card m-2 ">
+                        <div className="row">
+                            <div className = "col-sm-4 text-center">
+                                <img class="card-img-top"  
+                                    src = {"http://127.0.0.1:8000"+searched_student_data.profile_pic} 
+                                    alt="Card image cap"/> 
+                                <button className = "btn btn-sm btn-danger mt-2" onClick = {delete_student}>
+                                    Delete this student
+                                </button>   
+                            </div>
+                            <div className = "col-sm-7">
+                                <h4>Name :- {searched_student_data.name}</h4>
+                                <h4>ID :- {searched_student_data.registration_id}</h4>
+                                <h4>{searched_student_data.email}</h4>
+                                <h4>Branch :- {searched_student_data.branch}</h4>
+                                <h4>Year :- {searched_student_data.year}</h4>
+                                <h4>Mobile number :-{searched_student_data.mobile_number}</h4>
+                                <h4>Room number :- {searched_student_data.room_number}</h4>
+                                <h4>Registered by :- {searched_student_data.staff}</h4>
+                            </div>
+                        </div>
                     </div>
                     : null}
                 </div>
                 <div className="col-sm-6">
                 <form className = "container roomform d-grid" onSubmit={handleSubmit}>
-                        <div className="form-row text-center m-3">
+                        <div className="form-row text-center m-2">
                             <h5>Register new student </h5>
                         </div>
-                        <div className="form-row m-3 " >
+                        <div className="form-row m-2 " >
                             <label>Enter registeration number</label>
                             <input type="text" className="form-control"
                                     name = "username" 
@@ -231,7 +238,7 @@ export const Staff_profile = () => {
                                     onChange = {handleChange} 
                                     required/>
                         </div>
-                        <div className="from-row m-3">
+                        <div className="from-row m-2">
                             <h6>Image</h6>
                             <div className="custom-file col-md-12 align-self-center mb-2">
                                 <input type="file" onChange={handlefileUpload}  required 
@@ -242,7 +249,7 @@ export const Staff_profile = () => {
                                 </label>
                             </div>
                         </div>
-                        <div className="form-row m-3 " >
+                        <div className="form-row m-2 " >
                             <label>Name of student</label>
                             <input type="text" className="form-control"
                                     name = "name" 
@@ -251,50 +258,55 @@ export const Staff_profile = () => {
                                     onChange = {handleChange} 
                                     required/>
                         </div>
-                        <div className="form-row m-3 " >
-                            <label>Email</label>
-                            <input type="email" className="form-control"
-                                    name = "email" 
-                                    placeholder="xyz@gmail.com"
-                                    value = {newStudent.email}
-                                    onChange = {handleChange} 
-                                    required/>
+                        <div className="form-row m-2 ">
+                            <div className = "form-group col-md-6">   
+                                <label>Email</label>
+                                <input type="email" className="form-control"
+                                        name = "email" 
+                                        placeholder="xyz@gmail.com"
+                                        value = {newStudent.email}
+                                        onChange = {handleChange} 
+                                        required/>
+                            </div>
+                            <div className="form-group col-md-6">
+                                <label>Mobile number</label>
+                                <input type="number" className="form-control"
+                                        name = "mobile_number" 
+                                        placeholder="9999999999"
+                                        value = {newStudent.mobile_number}
+                                        onChange = {handleChange} 
+                                        required/>
+                            </div>
                         </div>
-                        <div className="form-row m-3 " >
-                            <label>Mobile number</label>
-                            <input type="number" className="form-control"
-                                    name = "mobile_number" 
-                                    placeholder="9999999999"
-                                    value = {newStudent.mobile_number}
-                                    onChange = {handleChange} 
-                                    required/>
-                        </div>
-                        <div className="form-row m-3 " >
-                            <label>Room number</label>
-                            <input type="number" className="form-control"
-                                    name = "room_number" 
-                                    placeholder="116"
-                                    value = {newStudent.room_number}
-                                    onChange = {handleChange} 
-                                    required/>
-                        </div>
-                        <div className="form-row m-3 " >
-                            <label>Year</label>
-                            <input type="number" className="form-control"
-                                    name = "year" 
-                                    placeholder="3"
-                                    value = {newStudent.year}
-                                    onChange = {handleChange} 
-                                    required/>
-                        </div>
-                        <div className="form-row m-3 " >
-                            <label>Branch</label>
-                            <input type="text" className="form-control"
-                                    name = "branch" 
-                                    placeholder="Computer"
-                                    value = {newStudent.branch}
-                                    onChange = {handleChange} 
-                                    required/>
+                        <div className="form-row m-2 " >
+                            <div className = "form-group col-md-4">
+                                <label>Room number</label>
+                                <input type="number" className="form-control"
+                                        name = "room_number" 
+                                        placeholder="116"
+                                        value = {newStudent.room_number}
+                                        onChange = {handleChange} 
+                                        required/>
+                            </div>
+                            <div className = "form-group col-md-4">
+                                <label>Branch</label>
+                                <input type="text" className="form-control"
+                                        name = "branch" 
+                                        placeholder="Computer"
+                                        value = {newStudent.branch}
+                                        onChange = {handleChange} 
+                                        required/>
+                            </div>
+                            <div className = "form-group col-md-4">
+                                <label>Year</label>
+                                <input type="number" className="form-control"
+                                        name = "year" 
+                                        placeholder="3"
+                                        value = {newStudent.year}
+                                        onChange = {handleChange} 
+                                        required/>
+                            </div>
+                            
                         </div>
                         <div className="text-center">
                             <button type="submit" className="btn btn-primary mb-2">Submit details</button>
